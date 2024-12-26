@@ -1,7 +1,7 @@
 # Penclave v1.0.1A
 
 ### Overview
-Penclave is a portable application designed to simplify the writing process for digital authors. Whether you're an experienced novelist or just embarking on your writing journey, Penclave offers a user-friendly platform to help you organize your thoughts and ideas seamlessly.
+Penclave is a portable application designed to simplify the writing process for digital authors. Whether you're an experienced novelist or just starting your writing journey, Penclave offers a user-friendly platform to help you organize your thoughts and ideas seamlessly.
 
 ## Key Features
 - **Workspaces**: Create multiple workspaces, each dedicated to a specific book series, allowing for better organization and focus.
@@ -18,10 +18,13 @@ To get started with Penclave, ensure you have Python installed on your machine. 
 3. Within the workspace, create a new room for each book you are writing.
 
 ## Contributing
-While there are no formal contribution guidelines at this time, we welcome your ideas and suggestions! Please feel free to share your feedback through GitHub Issues.
+While there are no formal contribution guidelines at this time, i welcome your ideas and suggestions! Please feel free to share your feedback through GitHub Issues.
 
 ## Known Issues
-Penclave is currently in its early development stages, and there are no known issues or limitations at this time. We appreciate your understanding as we continue to improve the application.
+Penclave is currently in its early development stages, and there are no known issues or limitations at this time.
 
 ## Additional Resources
-As the project is still in its infancy, there are currently no additional resources or documentation available. Stay tuned for updates as we expand and enhance Penclave's features!
+As the project is still in its infancy, there are currently no additional resources or documentation available. Stay tuned for updates as i add features to Penclave!
+
+## Author
+Developed and maintained with ❤️ by [EscapedShadows](https://escapedshadows.com).
