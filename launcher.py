@@ -3,9 +3,12 @@ import os
 import sys
 import subprocess
 
+# Setup
+if not os.path.isdir(r"userdata\series"):
+    os.makedirs(r"userdata\series")
+
 # Global settings
-DEBUG_MODE = "--debug" in sys.argv
-DIR_PATH = r"userdata\workspaces"
+DIR_PATH = r"userdata\series"
 
 # Function to suppress the console window (Windows)
 def suppress_console():
@@ -16,34 +19,27 @@ def suppress_console():
         )
         sys.exit()
 
-# Debug helper functions
-def debug(content):
-    if DEBUG_MODE:
-        print(content)
-
-def decoy_debug(content):
-    pass
-
-debug = debug if DEBUG_MODE else decoy_debug
-
-# Workspaces management
-def load_workspaces():
-    debug("Loading workspaces...")
+# Series management
+def load_series():
     return [f for f in os.listdir(DIR_PATH) if os.path.isdir(os.path.join(DIR_PATH, f))]
 
-def create_new_workspace():
-    new_workspace = create_new_title.get("1.0", "end-1c").strip()
-    if new_workspace:
-        new_dir = os.path.join(DIR_PATH, new_workspace)
+def create_new_series():
+    new_series = create_new_title.get("1.0", "end-1c").strip()
+    if new_series:
+        new_dir = os.path.join(DIR_PATH, new_series)
         if not os.path.exists(new_dir):
             os.makedirs(new_dir)
-            debug(f"Created new workspace: {new_workspace}")
-            open_workspace(new_workspace)
+            open_series(new_series)
         else:
-            debug("Workspace already exists!")
+            print("Series already exists!")
 
-def open_workspace(workspace):
-    debug(f"Opening workspace: {workspace}")
+def open_series(series):
+    print(f"Opening series: {series}")
+    subprocess.Popen(
+        [sys.executable] + ["series.py"] + ["--detached"] + ["--series"] + [series],
+        creationflags=subprocess.CREATE_NEW_CONSOLE
+    )
+    sys.exit()
 
 # GUI Setup
 def open_settings():
@@ -55,11 +51,12 @@ def open_settings():
     settings_menu.mainloop()
 
 # Main application logic
-if not DEBUG_MODE:
-    suppress_console()
+if "--debug" not in sys.argv:
+    pass
+    #suppress_console()
 
-# Load workspaces
-workspaces = load_workspaces()
+# Load series
+series_list = load_series()
 
 # Tkinter Setup
 root = ctk.CTk()
@@ -78,21 +75,21 @@ subtitle.pack(pady=10)
 settings_button = ctk.CTkButton(root, text="⚙️", width=40, height=40, command=open_settings, fg_color="transparent", bg_color="transparent")
 settings_button.place(x=550, y=7)
 
-# Scrollable Frame for workspace buttons
+# Scrollable Frame for series buttons
 container = ctk.CTkScrollableFrame(root, width=550, height=438)
 container.pack()
 
-# Create New Workspace Button & Textbox
-create_new_button = ctk.CTkButton(root, width=125, height=40, text="Create!", font=("Arial", 18, "bold"), command=create_new_workspace)
+# Create New Series Button & Textbox
+create_new_button = ctk.CTkButton(root, width=125, height=40, text="Create!", font=("Arial", 18, "bold"), command=create_new_series)
 create_new_button.pack(pady=10, padx=15, side="left")
 
 create_new_title = ctk.CTkTextbox(root, width=475, height=40)
 create_new_title.pack(pady=10, padx=15, side="right")
 
-# Create buttons for existing workspaces
-for workspace in workspaces:
-    workspace_button = ctk.CTkButton(container, text=workspace, width=500, height=40, command=lambda ws=workspace: open_workspace(ws))
-    workspace_button.pack(pady=5)
+# Create buttons for existing series
+for series in series_list:
+    series_button = ctk.CTkButton(container, text=series, width=500, height=40, command=lambda sr=series: open_series(sr))
+    series_button.pack(pady=5)
 
 # Run the GUI
 root.mainloop()
