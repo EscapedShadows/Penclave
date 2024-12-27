@@ -1,4 +1,4 @@
-# Penclave v1.0.1A
+# Penclave v1.0.3A
 
 ### Overview
 Penclave is a portable application designed to simplify the writing process for digital authors. Whether you're an experienced novelist or just starting your writing journey, Penclave offers a user-friendly platform to help you organize your thoughts and ideas seamlessly.
